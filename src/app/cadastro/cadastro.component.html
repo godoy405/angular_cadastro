@@ -18,8 +18,7 @@
               </mat-form-field>
             </div>
           </div>
-
-          <div fxLayout="row" fxLayoutAlign="start" fxLayout="16px">
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
             <div fxLayout="column" fxFlex="800px">
               <mat-form-field class="full-width">
                 <mat-label>E-mail: *</mat-label>
@@ -32,7 +31,7 @@
             </div>
           </div>
 
-          <div fxLayout="row" fxLayoutAlign="start" fxLayout="16px">
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
             <div fxLayout="column" fxFlex="400px">
               <mat-form-field class="full-width">
                 <mat-label>CPF: *</mat-label>
@@ -45,7 +44,7 @@
             </div>
           </div>
 
-          <div fxLayout="row" fxLayoutAlign="start" fxLayout="16px">
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
             <div fxLayout="column" fxFlex="400px">
               <mat-form-field class="full-width">
                 <mat-label>Data Nascimento: *</mat-label>
@@ -53,21 +52,24 @@
                     type="text"
                     [(ngModel)] ="cliente.dataNascimento"
                     name="dataNascimento"
-                    placeholder="Digite susa Data Nascimento" matInput/>
+                    placeholder="Digite sua Data Nascimento" matInput/>
               </mat-form-field>
             </div>
           </div>
 
         </mat-card-content>
         <mat-card-actions>
+          @if(!atualizando){
               <button mat-flat-button color="primary" type="submit">
                 <mat-icon fontIcon="save"></mat-icon>
                 Salvar
               </button>
-              <button mat-flat-button color="primary">
-                <mat-icon fontIcon="refresh"></mat-icon>
+          } @else {
+              <button mat-flat-button color="primary" type="submit">
+                <mat-icon fontIcon="edit"></mat-icon>
                 Atualizar
               </button>
+              }
               <button mat-flat-button color="accent" class="ml-5">
                 <mat-icon fontIcon="backspace"></mat-icon>
                 Limpar
