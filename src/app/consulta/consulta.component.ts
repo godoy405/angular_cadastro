@@ -31,6 +31,7 @@ import { Router } from '@angular/router';
   nomeBusca: string = '';
   listaClientes: Cliente[] = [] ;
   colunasTable: string[] = ['id', 'nome', 'cpf', 'dataNascimento', 'email','acoes'];
+  deletando: boolean = false;
 
   constructor(
       private service:ClienteService,
@@ -51,4 +52,13 @@ import { Router } from '@angular/router';
     this.router.navigate(['/cadastro'], { queryParams: { id: id } } );
   }
 
+  preparaDeletar(cliente: Cliente) {
+    cliente.deletando = true;
+  }
+
+  deletar(Cliente: Cliente) {
+    // Implementar lógica de deleção
+    this.service.deletar(Cliente);
+    this.listaClientes = this.service.pesquisarClientes('');
+  }
 }
