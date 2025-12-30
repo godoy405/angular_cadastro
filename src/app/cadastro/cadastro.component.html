@@ -59,32 +59,42 @@
             </div>
           </div>
 
-          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
-            <div fxLayout="column" fxFlex="400px">
-              <mat-form-field class="full-width">
-                <mat-label>UF: </mat-label>
-                <mat-select [(value)]="cliente.uf" (selectionChange)="carregarMunicipios($event)">
-                  <mat-option *ngFor="let uf of estados" [value]="uf.sigla">
-                    {{ uf.sigla }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-          </div>
+          <!-- SELECT DA UF -->
+<div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+  <div fxLayout="column" fxFlex="400px">
+    <mat-form-field class="full-width">
+      <mat-label>UF: *</mat-label>
+      <mat-select [(ngModel)]="cliente.uf"
+                  name="uf"
+                  (selectionChange)="carregarMunicipios($event)"
+                  required>
+        @for(estado of estados; track estado.sigla) {
+          <mat-option [value]="estado.sigla">
+            {{ estado.sigla }} - {{ estado.nome }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
 
-          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
-            <div fxLayout="column" fxFlex="400px">
-              <mat-form-field class="full-width">
-                <mat-label>Municipio: </mat-label>
-                <mat-select [(value)]="cliente.municipio" [(ngModel)]="cliente.uf" name="uf" required>
-                  <mat-option *ngFor="let m of municipios" [value]="m.nome">
-                    {{ m.nome }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-          </div>
-
+<!-- SELECT DO MUNICÍPIO -->
+<div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+  <div fxLayout="column" fxFlex="400px">
+    <mat-form-field class="full-width">
+      <mat-label>Município: *</mat-label>
+      <mat-select [(ngModel)]="cliente.municipio"
+                  name="municipio"
+                  required>
+        @for(municipio of municipios; track municipio.nome) {
+          <mat-option [value]="municipio.nome">
+            {{ municipio.nome }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
         </mat-card-content>
         <mat-card-actions>
           @if(!atualizando){

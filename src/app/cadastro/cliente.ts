@@ -10,6 +10,7 @@ export class Cliente {
     uf?: string;
     municipio?: string;
 
+
     static newCliente() {
         const cliente = new Cliente();
         cliente.id = uuid();
